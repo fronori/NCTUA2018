@@ -117,35 +117,3 @@ mat %>%
 dev.copy(quartz, file = "./plot/qplot_spring2.pdf", width = 8, height = 8, 
          type = "pdf")
 dev.off()
-
-
-
-
-library(glasso)
-res_glasso <- glasso(mat, 0.1)
-# res_glasso$graphAttributes$Nodes$labels <- res$graphAttributes$Nodes$labels
-# res_glasso$graphAttributes$Nodes$names <- res$graphAttributes$Nodes$names
-# Plot:
-qgraph(res_glasso, layout = "spring")
-?glasso
-BICgraph <- qgraph(
-  CorMat,
-  graph = "glasso",
-  sampleSize = nrow(bfi),
-  tuning = 0,
-  layout = "spring",
-  title = "BIC",
-  details = TRUE
-)
-
-adult_zeroorder <- cor(Rogers)
-
-qgraph(adult_zeroorder, layout="spring",
-       
-       groups = list(Depression = 1:16,
-                     
-                     "OCD" = 17:26),
-       
-       color = c("lightblue",
-                 
-                 "lightsalmon"))
