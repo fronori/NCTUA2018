@@ -5,6 +5,7 @@ customized_network_plot.cor_df <- function(rdf,
                                 colours = c("indianred2", "white", "skyblue1"),
                                 repel = TRUE,
                                 curved = TRUE,
+                                alpha = FALSE, 
                                 colors) {
   
   if (min_cor < 0 || min_cor > 1) {
@@ -90,6 +91,11 @@ customized_network_plot.cor_df <- function(rdf,
                            aes(x = x, y = y, xend = xend, yend = yend,
                                # alpha = proximity, # use not alpha channel but gradient colours
                                alpha = 1, size = proximity, 
+                               colour = proximity*sign)),
+    if (alpha) geom_curve(data = paths,
+                           aes(x = x, y = y, xend = xend, yend = yend,
+                               alpha = proximity,                                
+                               size = proximity, 
                                colour = proximity*sign)),
     if (!curved) geom_segment(data = paths,
                               aes(x = x, y = y, xend = xend, yend = yend,
